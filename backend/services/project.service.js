@@ -1,4 +1,5 @@
 import projectModel from '../models/project.model.js';
+import mongoose from 'mongoose';
 
 export const createProject = async ({
       name, 
@@ -60,9 +61,8 @@ export const addUserToProject = async ({projectId, users, userId }) => {
             throw new Error("Invalid UserId")
       }
 
-      
       const project = await projectModel.findOne({
-            _id: project,
+            _id: projectId,
             users: userId
       });
       if(!project) {
